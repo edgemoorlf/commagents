@@ -1,0 +1,33 @@
+# Football Avatar Configuration
+avatar:
+  api_endpoint: "http://localhost:8000/speak"
+  default_language: "Chinese"
+  emotion_mappings:
+    goal: "excited"
+    card: "serious"
+    substitution: "neutral"
+    save: "surprised"
+    halftime: "neutral"
+    tactical: "analytical"
+    stat: "informative"
+    transition: "friendly"
+    penalty: "intense"
+
+n8n:
+  webhook_url: "http://localhost:5678/webhook/match"
+  event_types:
+    - "goal"
+    - "card"
+    - "substitution"
+    - "save"
+    - "halftime"
+    - "tactical"
+    - "stat"
+    - "transition"
+    - "penalty"
+
+mcp:
+  server_url: "http://localhost:8080"
+  tools:
+    - "process_match_event"
+    - "trigger_avatar"

@@ -1,6 +1,3 @@
-# commagents
-A football commentating multi-agent framework based on metagpt
-
 
 ## Task
 Build a project called "LiveFootballAvatar" that:
@@ -49,4 +46,3 @@ POST /speak
   "emotion": "excited",
   "language": "Chinese"
 }
-
