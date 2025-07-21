@@ -19,8 +19,27 @@ class FootballCommentaryTeam:
 
     async def process_event(self, event: str):
         # Broadcast event to all agents
-        msg = Message(content=event, role="System", cause_by="Event")
-        await self.team.run_project(msg)
+        if event.startswith('TACTICAL:'):
+            event = event.removeprefix("TACTICAL:")
+            msg = Message(
+                content=f"Match Event: {event}",
+                role="User",
+                send_to="TacticalAnalyst"
+            )
+        elif event.startswith('TRANSITION:'):
+            event = event.removeprefix("TRANSITION:")
+            msg = Message(
+                content=f"Match Event: {event}",
+                role="User",
+                send_to="ShowHost"
+            )
+        else:
+            msg = Message(
+                content=f"Match Event: {event}",
+                role="User",
+                send_to="PlayByPlayCommentator"
+            )
+        await self.team.run_project(msg.content, send_to=msg.send_to)
 
 async def main():
     team = FootballCommentaryTeam()
@@ -35,7 +54,7 @@ async def main():
         # Tactical analysis events
         "TACTICAL: Argentina switches to 4-4-2 formation",
         "TACTICAL: France using high press to disrupt Argentina's buildup",
-        "STAT: Possession - Argentina 58%, France 42%",
+        "TACTICAL: Possession - Argentina 58%, France 42%",
         
         # Host transition events
         "TRANSITION: Let's get analysis from our expert",
