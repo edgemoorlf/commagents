@@ -1,0 +1,26 @@
+name: ai-avatar-platform
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.9,<3.13
+  - pip>=23.0
+  
+  # Core dependencies available via conda
+  - aiohttp>=3.8.0
+  - pyyaml>=6.0
+  
+  # Development tools
+  - pytest>=7.0.0
+  - black>=23.0.0
+  - flake8>=6.0.0
+  - mypy>=1.0.0
+  
+  # Optional system dependencies
+  - git
+  
+  # Pip dependencies (not available via conda)
+  - pip:
+    - metagpt>=0.8.0
+    - pytest-asyncio>=0.21.0
+    - asyncio-mqtt>=0.11.0

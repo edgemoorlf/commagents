@@ -1,0 +1,21 @@
+# AI Avatar Platform - Core Dependencies
+# Compatible with Python 3.9 - 3.12 (MetaGPT requirement)
+metagpt>=0.8.0
+aiohttp>=3.8.0
+pyyaml>=6.0
+asyncio-mqtt>=0.11.0
+
+# Development Dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Optional Dependencies for Enhanced Features  
+# Uncomment as needed:
+# requests>=2.28.0          # For HTTP requests
+# websockets>=11.0.0        # For WebSocket connections
+# redis>=4.5.0              # For Redis integration
+# chromadb>=0.4.0           # For vector database
+# sentence-transformers     # For embeddings

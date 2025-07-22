@@ -129,23 +129,56 @@ POST /speak
 ## Getting Started
 
 ### Prerequisites
-- Python 3.8+
-- MetaGPT framework
-- n8n workflow automation
-- Avatar API service (DUIX/SenseAvatar)
+- Python 3.9+ (supports 3.9, 3.10, 3.11, 3.12)
+- Git
+
+### Installation
+
+#### Option 1: pip install (Recommended)
+```bash
+# Clone repository
+git clone <repository-url>
+cd ai-avatar-platform
+
+# Install with development dependencies
+pip install -e ".[dev]"
+
+# Copy and configure settings
+cp config/config2.example.yaml config/config2.yaml
+# Edit config/config2.yaml with your API keys
+```
+
+#### Option 2: conda/mamba
+```bash
+# Create environment from specification
+conda env create -f environment.yml
+conda activate ai-avatar-platform
+
+# Copy configuration
+cp config/config2.example.yaml config/config2.yaml
+```
+
+#### Option 3: Quick setup
+```bash
+# Run automated setup script
+./setup.sh
+```
 
 ### Configuration
 1. Copy `config/config2.example.yaml` to `config/config2.yaml`
 2. Update API keys and endpoints
 3. Configure avatar settings in `config/football_avatar.yaml`
 
-### Running the Example
+### Testing Installation
 ```bash
-# Run football commentary system
+# Test infrastructure
+python test_infrastructure.py
+
+# Run example
 python agents/football_commentary_team.py
 
-# Run tests
-python test_commentary.py
+# Run all tests
+pytest
 ```
 
 ## Technology Stack

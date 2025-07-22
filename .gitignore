@@ -207,8 +207,20 @@ marimo/_lsp/
 __marimo__/
 
 
-build_customized_multi*.py
-
+# AI Avatar Platform specific
 logs/
 config2.yaml
-test*
+test_commentary.py
+
+# Project specific configuration files (may contain secrets)
+config/config2.yaml
+config/local_config.yaml
+
+# Data files
+data/
+*.db
+*.sqlite
+
+# IDE specific
+.vscode/
+.idea/
