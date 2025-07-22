@@ -1,5 +1,17 @@
 """
 Football Show Host Agent
+
+Example agent that moderates discussion flow between commentators.
+Demonstrates how to create coordinating agents that manage interactions.
+
+This agent:
+- Provides smooth transitions between different commentary types  
+- Responds to events prefixed with "TRANSITION:"
+- Moderates discussion flow and provides summaries
+- Shows agent coordination patterns
+
+Usage:
+    Part of the FootballCommentaryTeam system
 """
 from metagpt.actions import Action
 from metagpt.roles import Role

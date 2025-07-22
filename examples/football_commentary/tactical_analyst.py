@@ -1,5 +1,17 @@
 """
 Football Tactical Analyst Agent
+
+Example agent that provides strategic analysis of football matches.
+Demonstrates specialized agent behavior for tactical content.
+
+This agent:
+- Analyzes formations, strategies, and tactical plays
+- Responds to events prefixed with "TACTICAL:"
+- Provides detailed 2-3 sentence analysis
+- Shows how to create domain-specific agents
+
+Usage:
+    Part of the FootballCommentaryTeam system
 """
 from metagpt.actions import Action
 from metagpt.roles import Role

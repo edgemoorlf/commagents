@@ -1,12 +1,32 @@
 """
 Football Commentary Team
+
+Example implementation demonstrating multi-agent football commentary system.
+Shows how specialized agents work together for comprehensive match coverage.
 """
 import fire
+import sys
+from pathlib import Path
+
+# Add project root to path for imports when run directly
+if __name__ == "__main__":
+    project_root = Path(__file__).parent.parent.parent
+    sys.path.insert(0, str(project_root))
+
 from metagpt.team import Team
 from metagpt.schema import Message
-from playbyplay_commentator import PlayByPlayCommentator
-from tactical_analyst import TacticalAnalyst
-from show_host import ShowHost
+
+# Handle imports based on execution context
+try:
+    # Try relative imports first (when imported as module)
+    from .playbyplay_commentator import PlayByPlayCommentator
+    from .tactical_analyst import TacticalAnalyst
+    from .show_host import ShowHost
+except ImportError:
+    # Fall back to absolute imports (when run directly)
+    from playbyplay_commentator import PlayByPlayCommentator
+    from tactical_analyst import TacticalAnalyst
+    from show_host import ShowHost
 
 class FootballCommentaryTeam:
     def __init__(self):

@@ -1,5 +1,16 @@
 """
-Football PlayByPlay Commentator Agent
+Football Play-by-Play Commentator Agent
+
+Example agent that provides energetic, vivid narration of football match events.
+Demonstrates how to create specialized agents with custom actions and prompts.
+
+This agent:
+- Generates passionate commentary for goals, saves, penalties, etc.
+- Uses MetaGPT's Action and Role framework
+- Responds to general match events (default handler)
+
+Usage:
+    Part of the FootballCommentaryTeam system
 """
 import re
 from metagpt.actions import Action

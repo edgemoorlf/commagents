@@ -210,7 +210,7 @@ __marimo__/
 # AI Avatar Platform specific
 logs/
 config2.yaml
-test_commentary.py
+# test_commentary.py
 
 # Project specific configuration files (may contain secrets)
 config/config2.yaml
