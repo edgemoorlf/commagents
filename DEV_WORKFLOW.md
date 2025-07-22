@@ -202,6 +202,7 @@ from management.avatar_config_manager import AvatarConfigManager
 
 async def demo():
     manager = AvatarConfigManager()
+    await manager.initialize()  # Initialize async components
     await manager.create_avatar('demo_avatar', 'conversational')
     print('Avatar created successfully!')
 
@@ -265,6 +266,7 @@ from agents.avatar.base_avatar_agent import BaseAvatarAgent
 
 # Create avatar configuration
 manager = AvatarConfigManager()
+await manager.initialize()  # Initialize async components
 await manager.create_avatar("my_assistant", "conversational", {
     'name': 'My Personal Assistant',
     'initial_knowledge': [{

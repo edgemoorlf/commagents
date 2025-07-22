@@ -2,6 +2,50 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Documentation File Index
+
+### Core Documentation Files
+- **CLAUDE.md** (this file) - Primary development guidance for Claude Code with project architecture and implementation plans
+- **CLAUDE_zh.md** - Chinese version of development guidance with identical structure to CLAUDE.md
+- **REQUIREMENTS.md** - Living requirements specification document (versioned, current active requirements)
+- **PROGRESS.md** - Development progress tracking (what's implemented, current phase status, next steps)
+- **README.md** - Public project overview and quick start guide for external users
+- **README_zh.md** - Chinese version of public project overview with identical structure to README.md
+
+### Change Management Documentation
+- **CHANGELOG.md** - Historical record of requirement changes with impact analysis and rollback information
+- **docs/ROLLBACK_PROCEDURES.md** - Detailed rollback procedures and change management workflows
+- **docs/archived_plans/*.md** - Archived copies of replaced architectural plans for rollback reference
+
+### Specialized Documentation
+- **DEV_WORKFLOW.md** - Development workflow and contribution guidelines
+
+### Update Protocol
+When making changes that affect project architecture, features, or requirements:
+
+1. **Always Update (Primary):**
+   - **CLAUDE.md** - Core architecture, implementation plans, agent specifications
+   - **REQUIREMENTS.md** - Add new version with updated specifications
+   - **CHANGELOG.md** - Document changes with impact analysis
+   - **PROGRESS.md** - Update phase status and development progress
+
+2. **Update When Relevant (Secondary):**
+   - **README.md/README_zh.md** - If changes affect public API or user-facing features
+   - **CLAUDE_zh.md** - Mirror all changes made to CLAUDE.md
+   - **docs/archived_plans/** - Archive replaced plans before major changes
+
+3. **Update Protocol Checklist:**
+   ```
+   [ ] CLAUDE.md - Updated architecture/plans
+   [ ] REQUIREMENTS.md - New version created
+   [ ] CHANGELOG.md - Change documented with impact
+   [ ] PROGRESS.md - Phase status updated
+   [ ] CLAUDE_zh.md - Chinese equivalent updated
+   [ ] README.md/README_zh.md - Public documentation updated (if needed)
+   [ ] Archived old plans (if major architectural change)
+   [ ] Git tagged with requirement version
+   ```
+
 ## Project Overview
 
 **AI Avatar Platform (commagents)** - A comprehensive AI-powered avatar platform that creates, manages, and operates digital avatars for content generation and live streaming. The platform consists of four main components: Avatar Manufacturing Workshop, Content Factory, Ecosystem Integration, and Data Analytics.
@@ -30,17 +74,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### 2. Content Factory (内容工厂)
 
-#### Content Import Agent
-- **API Integration**: Imports content via REST APIs and MCP protocols
-- **Web Tools**: WebSurfer and WebCrawler for content acquisition
-- **Agent-Based**: Autonomous content discovery and import
+#### Influencer Content Harvesting Agent
+- **WebSurfer Integration**: Automated browsing and content scraping from social media platforms
+- **Multi-Media Extraction**: Downloads and processes vlogs, images, and short videos
+- **Content Cataloging**: Organizes harvested content by type, date, and engagement metrics
+- **Platform Coverage**: TikTok, Instagram, YouTube, Twitter, and other major platforms
+
+#### Style Analysis Agent
+- **Content Style Extraction**: Analyzes visual aesthetics, tone, themes, and presentation patterns
+- **AI-Powered Pattern Recognition**: Uses computer vision and NLP to identify unique style elements
+- **Trend Identification**: Extracts recurring themes, topics, and content formats
+- **Personality Modeling**: Creates comprehensive influencer personality and brand profiles
 
 #### Content Generation Agent
-- **Multi-Source Generation**:
-  1. Single-phrase prompts
-  2. Content reprocessing and micro-innovation
-  3. IP-style content transformation
-- **Tool-Enhanced**: Uses LLM + external tools + n8n workflows
+- **Style-Matched Generation**: Produces content that mimics identified influencer styles
+- **Multi-Format Creation**: Generates vlogs, images, short videos, and social media posts
+- **Brand Consistency**: Maintains coherent voice and visual identity across content types
+- **Tool-Enhanced**: Uses LLM + external tools + n8n workflows + AI image/video generation
 
 #### Video Production Pipeline Agent
 - **End-to-End Video Creation**: From script to final video
@@ -49,10 +99,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### 3. Ecosystem Integration (生态平台接入)
 
-#### Publishing Pipeline Agent
-- **Multi-Platform Publishing**: Automated content distribution
-- **n8n Workflow**: Orchestrates publishing across platforms
-- **WebSurfer Integration**: Platform-specific publishing logic
+#### Social Media Publishing Agent
+- **Multi-Platform Distribution**: Automated posting to TikTok, Instagram, YouTube, Twitter, etc.
+- **Platform Optimization**: Adapts content format and metadata for each social media platform
+- **Scheduling and Timing**: Optimizes posting times based on audience engagement patterns
+- **Cross-Platform Strategy**: Coordinates content release across multiple platforms
+- **WebSurfer Integration**: Platform-specific publishing logic and API management
 
 ### 4. Data Analytics (数据分析)
 - **Live Avatar Metrics**: Performance tracking and analytics
@@ -110,6 +162,15 @@ Standard MetaGPT configuration covering:
 - Role-specific LLM configurations
 - Embedding, search, browser automation settings
 - TTS integration (Azure, iFlytek)
+- **ADD: WebSurfer configuration for content scraping**
+- **ADD: AI generation tool APIs (DALL-E, RunwayML, ElevenLabs)**
+
+### Social Media Config (`config/social_media.yaml`) - NEW
+Influencer pipeline specific settings:
+- Platform API credentials (TikTok, Instagram, YouTube, Twitter)
+- Content harvesting targets and schedules
+- Publishing workflows and timing optimization
+- Style analysis model configurations
 
 ### Football Avatar Config (`config/football_avatar.yaml`)
 Project-specific settings:
@@ -126,44 +187,68 @@ Project-specific settings:
 #### Infrastructure Setup
 - [ ] Create base platform structure with MetaGPT framework
 - [ ] Implement core Agent base classes and framework patterns
-- [ ] Set up configuration management system
+- [ ] Set up configuration management system with social media API support
 - [ ] Establish n8n workflow integration foundation
 - [ ] Create MCP server integration layer
+- [ ] **ADD: WebSurfer tool integration for content scraping**
+- [ ] **ADD: Multi-platform API client base classes**
+- [ ] **ADD: Content storage and media management system**
 
 #### Avatar Manufacturing Workshop - Foundation
 - [ ] Implement `LiveAvatarAgent` base class with knowledge management
 - [ ] Create avatar configuration system
 - [ ] Build basic content generation from single phrases
 - [ ] Implement avatar-to-API communication layer
+- [ ] **ADD: Avatar personality adaptation for influencer styles**
 
-### Phase 2: Content Factory Development
+### Phase 2: Avatar Manufacturing Workshop Enhancement
 **Timeline: Weeks 5-8**
 
-#### Content Agents
-- [ ] Implement `ContentImportAgent` with API/MCP integration
-- [ ] Build `ContentGenerationAgent` with multi-source capabilities
-- [ ] Create WebSurfer and WebCrawler tool integrations
-- [ ] Develop content transformation and IP-style generation
+#### Enhanced Avatar System
+- [ ] Implement advanced avatar personality system with style adaptation
+- [ ] Create dynamic knowledge injection from social media content
+- [ ] Build multi-modal content generation (text, voice, visual style)
+- [ ] **ADD: Avatar brand consistency engine for influencer mimicry**
+- [ ] **ADD: Personality evolution based on content analysis**
 
-#### Pipeline Integration
-- [ ] Establish content flow between import → generation → avatar
-- [ ] Implement content quality and filtering mechanisms
-- [ ] Create content versioning and management system
+#### Content Processing Foundation
+- [ ] Implement basic WebSurfer integration for content discovery
+- [ ] Create content quality and filtering mechanisms
+- [ ] Build content versioning and management system
+- [ ] **ADD: Media processing pipeline for images and videos**
+- [ ] **ADD: Style analysis preparation for Phase 3 integration**
 
-### Phase 3: Advanced Features
+#### Management Interface Enhancement
+- [ ] Enhanced avatar configuration for influencer-style avatars
+- [ ] **ADD: Social media account linking and management**
+- [ ] **ADD: Content scheduling and publishing workflow preparation**
+
+### Phase 3: Influencer Content Pipeline
 **Timeline: Weeks 9-12**
 
-#### Video Production Pipeline
-- [ ] Implement `VideoProductionAgent` base structure
-- [ ] Integrate external video processing tools
-- [ ] Create automated video generation workflows
-- [ ] Build quality control and optimization systems
+#### Influencer Content Harvesting
+- [ ] Implement `InfluencerHarvestingAgent` with WebSurfer capabilities
+- [ ] Build multi-platform content scraping (TikTok, Instagram, YouTube, Twitter)
+- [ ] Create media download and storage system for vlogs, images, videos
+- [ ] Implement content metadata extraction and cataloging
 
-#### Publishing & Analytics
-- [ ] Develop `PublishingPipelineAgent` for multi-platform distribution
-- [ ] Implement data collection and analytics system
-- [ ] Create performance monitoring and optimization tools
-- [ ] Build user engagement tracking
+#### Style Analysis and Modeling
+- [ ] Develop `StyleAnalysisAgent` for content pattern recognition
+- [ ] Build AI-powered visual and textual style extraction
+- [ ] Create influencer personality and brand modeling system
+- [ ] Implement trend and theme identification algorithms
+
+#### AI Content Generation Pipeline
+- [ ] Build style-matched content generation capabilities
+- [ ] Integrate AI image and video generation tools
+- [ ] Create multi-format content creation (vlogs, posts, stories)
+- [ ] Implement brand consistency and quality control systems
+
+#### Social Media Publishing & Analytics
+- [ ] Develop `SocialMediaPublishingAgent` for multi-platform distribution
+- [ ] Build platform-specific content optimization and formatting
+- [ ] Implement automated scheduling and timing optimization
+- [ ] Create comprehensive engagement and performance analytics
 
 ### Phase 4: Platform Maturation
 **Timeline: Weeks 13-16**
@@ -204,13 +289,24 @@ management/
 
 ### Content Factory Tasks
 
-#### Import and Generation Agents
+#### Influencer Content Pipeline Agents
 ```
 agents/content/
-├── content_import_agent.py       # API/MCP content import
-├── content_generation_agent.py   # Multi-source content generation
-├── web_surfer_agent.py           # Web content acquisition
-└── content_transformer.py       # IP-style transformation
+├── influencer_harvesting_agent.py    # Multi-platform content scraping with WebSurfer
+├── style_analysis_agent.py           # AI-powered style and pattern extraction
+├── content_generation_agent.py       # Style-matched multi-format content creation
+├── social_media_publishing_agent.py  # Multi-platform automated publishing
+└── content_transformer.py            # Brand-consistent content transformation
+```
+
+#### Content Processing Tools
+```
+tools/content/
+├── media_downloader.py               # Video, image, and audio extraction
+├── style_extractor.py                # Visual and textual style analysis
+├── brand_profiler.py                 # Influencer personality modeling
+├── content_generator.py              # AI-powered content creation
+└── platform_optimizer.py             # Social media platform-specific formatting
 ```
 
 #### Tools Integration
@@ -225,10 +321,26 @@ tools/
 ### Video Production Tasks
 ```
 agents/video/
-├── video_production_agent.py     # End-to-end video creation
-├── script_generator.py           # Video script creation
-├── video_processor.py            # External tool integration
-└── production_pipeline.py        # Automated video workflow
+├── video_production_agent.py     # End-to-end video creation from harvested content
+├── vlog_generator.py             # AI-powered vlog script and video generation
+├── short_video_creator.py        # TikTok/Instagram Reels style video creation
+├── video_processor.py            # External tool integration for video editing
+└── production_pipeline.py       # Automated video workflow with style matching
+```
+
+### Social Media Integration Tasks
+```
+social_media/
+├── platform_clients/
+│   ├── tiktok_client.py             # TikTok API integration
+│   ├── instagram_client.py          # Instagram Graph API integration
+│   ├── youtube_client.py            # YouTube Data API integration
+│   └── twitter_client.py            # Twitter API v2 integration
+├── content_adapters/
+│   ├── format_optimizer.py          # Platform-specific format conversion
+│   ├── metadata_generator.py        # Hashtags, captions, descriptions
+│   └── engagement_optimizer.py      # Timing and audience targeting
+└── publishing_scheduler.py       # Cross-platform posting coordination
 ```
 
 ### Platform Integration Tasks
@@ -264,19 +376,27 @@ python agents/content/content_import_agent.py
 python workflows/workflow_manager.py
 ```
 
-### Current Example (LiveFootballAvatar)
+### Influencer Content Pipeline Development Commands
 ```bash
-# Run the football commentary system
-python agents/football_commentary_team.py
+# Run influencer harvesting agent
+python agents/content/influencer_harvesting_agent.py --target-url <influencer_profile>
 
-# Run tests for current implementation
-python test_commentary.py
+# Analyze harvested content styles
+python agents/content/style_analysis_agent.py --content-dir ./harvested_content
+
+# Generate style-matched content
+python agents/content/content_generation_agent.py --style-profile ./profiles/influencer_style.json
+
+# Publish to social media platforms
+python agents/content/social_media_publishing_agent.py --content ./generated_content --platforms all
 ```
 
 ### Configuration Setup
 1. Copy `config/config2.example.yaml` to `config/config2.yaml`
 2. Update API keys and endpoints in the configuration files
 3. Configure avatar API endpoint in `config/football_avatar.yaml`
+4. Set up social media platform API credentials in `config/social_media.yaml`
+5. Configure content harvesting targets in `config/influencer_targets.yaml`
 
 ## Integration Points
 
@@ -288,9 +408,23 @@ python test_commentary.py
 - Webhook: `http://localhost:5678/webhook/match`
 - Supported event types: goal, card, substitution, save, halftime, tactical, stat, transition, penalty
 
-### Avatar API
-- Endpoint: `http://localhost:8000/speak`
-- Payload format: `{"text": "commentary", "emotion": "excited", "language": "Chinese"}`
+### Social Media Platform APIs
+- **TikTok**: Research API, Creator Portal API
+- **Instagram**: Graph API, Basic Display API
+- **YouTube**: Data API v3, Analytics API
+- **Twitter**: API v2, Media Upload API
+
+### Content Generation Tools
+- **AI Image Generation**: DALL-E 3, Midjourney API, Stable Diffusion
+- **AI Video Generation**: RunwayML, Pika Labs, Synthesia API
+- **Voice Cloning**: ElevenLabs, Murf, Azure Cognitive Services
+- **Text Generation**: GPT-4, Claude, custom fine-tuned models
+
+### Content Analysis Tools
+- **Computer Vision**: OpenCV, YOLO, Google Vision API
+- **Style Analysis**: Custom CNN models, feature extraction
+- **NLP Processing**: spaCy, NLTK, sentiment analysis models
+- **Audio Analysis**: librosa, speech-to-text APIs
 
 ## Development Notes
 

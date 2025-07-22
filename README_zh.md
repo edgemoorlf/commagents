@@ -34,31 +34,42 @@
 - 事件驱动的动作和调度
 - 多数字人协调和交互
 
-### 2. 内容工厂
+### 2. 内容工厂 - 网红内容流水线
 
-#### 内容导入智能体
-- API和MCP协议集成的内容获取
-- WebSurfer和WebCrawler工具的自主内容发现
-- 多源内容聚合和处理
+#### 网红内容采集智能体
+- WebSurfer集成的多平台内容抓取
+- 自动提取视频博客、图片和短视频
+- 支持TikTok、Instagram、YouTube、Twitter等主要平台
+- 按类型、日期和互动指标进行内容分类和组织
 
-#### 文案生成智能体
-- **多源内容生成**：
-  - 单句提示扩展
-  - 内容再加工和微创新
-  - IP风格内容转换
-- 基于LLM + 外部工具 + n8n工作流的工具增强生成
+#### 风格分析智能体
+- AI驱动的视觉和文本风格提取
+- 美学模式和主题的计算机视觉分析
+- 基于NLP的语调、语言和个性分析
+- 网红品牌建档和趋势识别
 
-#### 视频制作一条龙智能体
-- 端到端自动化视频创建
-- 脚本生成和视频处理
-- 与外部视频工具和服务集成
+#### 内容生成智能体
+- **风格匹配的内容生成**：
+  - 模仿网红表现风格的AI生成视频博客
+  - 保持视觉美学一致性的图像创作
+  - 匹配原始格式和语调的短视频生成
+  - 具有真实声音和个性的社交媒体帖子
+- **多格式创建**，跨内容类型保持品牌一致性
+- **AI工具集成**：DALL-E 3、RunwayML、ElevenLabs、Midjourney APIs
 
-### 3. 生态平台接入
+#### 社交媒体发布智能体
+- **多平台自动分发**到TikTok、Instagram、YouTube、Twitter
+- **平台特定优化**和内容格式适配
+- **基于观众互动模式的智能调度**
+- **跨平台协调**同步内容发布
 
-#### 接入发布一条龙智能体
-- 多平台内容分发
-- 通过n8n的自动化发布工作流
-- 平台特定优化和格式化
+### 3. 生态平台接入 - 社交媒体集成
+
+#### 社交媒体平台集成
+- **多平台API支持**：TikTok研究API、Instagram图谱API、YouTube数据API、Twitter API v2
+- **针对每个平台特定要求的内容格式优化**
+- **带有平台特定元数据生成的自动发布工作流**
+- **跨平台的互动分析**和性能优化
 
 ### 4. 数据分析
 - 直播数字人性能指标和分析
@@ -139,12 +150,30 @@ POST /speak
 2. 更新API密钥和端点
 3. 在 `config/football_avatar.yaml` 中配置数字人设置
 
-### 运行示例
+### 网红内容流水线开发命令
+```bash
+# 运行网红内容采集
+python agents/content/influencer_harvesting_agent.py --platform tiktok --target @用户名
+
+# 分析内容风格
+python agents/content/style_analysis_agent.py --content-dir ./harvested_content/用户名
+
+# 生成风格匹配的内容
+python agents/content/content_generation_agent.py --style-profile ./profiles/用户名.json --format vlog
+
+# 发布到多个平台
+python agents/content/social_media_publishing_agent.py --content ./generated_content --platforms all
+
+# 运行完整网红流水线
+python main.py --mode influencer --target @用户名 --platforms "tiktok,instagram,youtube"
+```
+
+### 当前示例（足球直播数字人）
 ```bash
 # 运行足球解说系统
 python agents/football_commentary_team.py
 
-# 运行测试
+# 运行当前实现的测试
 python test_commentary.py
 ```
 

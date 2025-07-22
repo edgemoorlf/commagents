@@ -34,31 +34,42 @@ A comprehensive AI-powered avatar platform for creating, managing, and operating
 - Event-driven actions and scheduling
 - Multi-avatar coordination and interaction
 
-### 2. Content Factory (内容工厂)
+### 2. Content Factory (内容工厂) - Influencer Content Pipeline
 
-#### Content Import Agent
-- API and MCP protocol integration for content acquisition
-- WebSurfer and WebCrawler tools for autonomous content discovery
-- Multi-source content aggregation and processing
+#### Influencer Content Harvesting Agent
+- Multi-platform content scraping with WebSurfer integration
+- Automated extraction of vlogs, images, and short videos
+- Support for TikTok, Instagram, YouTube, Twitter, and other major platforms
+- Content cataloging and organization by type, date, and engagement metrics
+
+#### Style Analysis Agent
+- AI-powered visual and textual style extraction
+- Computer vision analysis of aesthetic patterns and themes
+- NLP-based tone, language, and personality analysis
+- Influencer brand profiling and trend identification
 
 #### Content Generation Agent
-- **Multi-source content generation**:
-  - Single-phrase prompt expansion
-  - Content reprocessing and micro-innovation
-  - IP-style content transformation
-- Tool-enhanced generation with LLM + external tools + n8n workflows
+- **Style-matched content generation**:
+  - AI-generated vlogs mimicking influencer presentation style
+  - Image creation with consistent visual aesthetics
+  - Short video generation matching original format and tone
+  - Social media posts with authentic voice and personality
+- **Multi-format creation** with brand consistency across content types
+- **AI tool integration**: DALL-E 3, RunwayML, ElevenLabs, Midjourney APIs
 
-#### Video Production Pipeline Agent
-- End-to-end automated video creation
-- Script generation and video processing
-- Integration with external video tools and services
+#### Social Media Publishing Agent
+- **Multi-platform automated distribution** to TikTok, Instagram, YouTube, Twitter
+- **Platform-specific optimization** and content format adaptation
+- **Intelligent scheduling** based on audience engagement patterns
+- **Cross-platform coordination** for synchronized content release
 
-### 3. Ecosystem Integration (生态平台接入)
+### 3. Ecosystem Integration (生态系统集成) - Social Media Integration
 
-#### Publishing Pipeline Agent
-- Multi-platform content distribution
-- Automated publishing workflows via n8n
-- Platform-specific optimization and formatting
+#### Social Media Platform Integration
+- **Multi-platform API support**: TikTok Research API, Instagram Graph API, YouTube Data API, Twitter API v2
+- **Content format optimization** for each platform's specific requirements
+- **Automated publishing workflows** with platform-specific metadata generation
+- **Engagement analytics** and performance optimization across platforms
 
 ### 4. Data Analytics (数据分析)
 - Live avatar performance metrics and analytics
@@ -169,16 +180,31 @@ cp config/config2.example.yaml config/config2.yaml
 2. Update API keys and endpoints
 3. Configure avatar settings in `config/football_avatar.yaml`
 
-### Testing Installation
+### Influencer Content Pipeline Development Commands
 ```bash
-# Test infrastructure
-python test_infrastructure.py
+# Run influencer content harvesting
+python agents/content/influencer_harvesting_agent.py --platform tiktok --target @username
 
-# Run example
+# Analyze content styles
+python agents/content/style_analysis_agent.py --content-dir ./harvested_content/username
+
+# Generate style-matched content
+python agents/content/content_generation_agent.py --style-profile ./profiles/username.json --format vlog
+
+# Publish to multiple platforms
+python agents/content/social_media_publishing_agent.py --content ./generated_content --platforms all
+
+# Run full influencer pipeline
+python main.py --mode influencer --target @username --platforms "tiktok,instagram,youtube"
+```
+
+### Current Example (LiveFootballAvatar)
+```bash
+# Run the football commentary system
 python agents/football_commentary_team.py
 
-# Run all tests
-pytest
+# Run tests for current implementation
+python test_commentary.py
 ```
 
 ## Technology Stack
