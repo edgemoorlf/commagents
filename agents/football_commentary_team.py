@@ -18,28 +18,15 @@ class FootballCommentaryTeam:
         ])
 
     async def process_event(self, event: str):
-        # Broadcast event to all agents
+        # Routing events to agents
+        send_to = "PlayByPlayCommentator"
         if event.startswith('TACTICAL:'):
-            event = event.removeprefix("TACTICAL:")
-            msg = Message(
-                content=f"Match Event: {event}",
-                role="User",
-                send_to="TacticalAnalyst"
-            )
+            send_to="TacticalAnalyst"
         elif event.startswith('TRANSITION:'):
-            event = event.removeprefix("TRANSITION:")
-            msg = Message(
-                content=f"Match Event: {event}",
-                role="User",
-                send_to="ShowHost"
-            )
-        else:
-            msg = Message(
-                content=f"Match Event: {event}",
-                role="User",
-                send_to="PlayByPlayCommentator"
-            )
-        await self.team.run_project(msg.content, send_to=msg.send_to)
+            send_to="ShowHost"
+
+        await self.team.run(idea=event, send_to=send_to, n_round=1)
+        
 
 async def main():
     team = FootballCommentaryTeam()

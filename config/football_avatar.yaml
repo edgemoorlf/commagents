@@ -1,3 +1,12 @@
+llm:
+  api_type: "openai"  # or azure / ollama / groq etc.
+  base_url: "https://api.openai.com/v1" 
+  api_key: "YOUR_API_KEY"
+  model: "gpt-4o"  # or gpt-3.5-turbo
+  # timeout: 600 # Optional. If set to 0, default value is 300.
+  # Details: https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/
+  pricing_plan: "" # Optional. Use for Azure LLM when its model name is not the same as OpenAI's
+
 # Football Avatar Configuration
 avatar:
   api_endpoint: "http://localhost:8000/speak"
